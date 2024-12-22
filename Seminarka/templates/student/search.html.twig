@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vyhledávání studentů</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.jmeno) }}
+        {{ form_row(form.prijmeni) }}
+        <button type="submit">Hledat</button>
+    {{ form_end(form) }}
+
+    <h2>Výsledky:</h2>
+    {% if students is not empty %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Jméno</th>
+                    <th>Příjmení</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.jmeno }}</td>
+                        <td>{{ student.prijmeni }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Žádné výsledky.</p>
+    {% endif %}
+{% endblock %}
+

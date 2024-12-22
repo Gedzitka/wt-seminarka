@@ -1,0 +1,21 @@
+
+{{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.jmeno, 'Jméno') }}
+        {{ form_widget(form.jmeno, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.jmeno) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.prijmeni, 'Příjmení') }}
+        {{ form_widget(form.prijmeni, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.prijmeni) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.vek, 'Věk') }}
+        {{ form_widget(form.vek, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.vek) }}
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary">{{ button_label|default('Ulož') }}</button>
+    </div>
+{{ form_end(form) }}

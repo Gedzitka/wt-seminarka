@@ -1,0 +1,35 @@
+security:
+    # Providers define how users are loaded into the application
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email  # Pole, podle kterého se uživatelé načítají z databáze
+
+    firewalls:
+        # Hlavní firewall pro autentifikaci
+        main:
+            lazy: true
+            provider: app_user_provider  # Používá app_user_provider pro načítání uživatele
+            form_login:
+                login_path: app_login    # Cesta pro přihlášení (musí existovat v controlleru)
+                check_path: app_login    # Cesta pro kontrolu přihlášení
+                default_target_path: /app_student_index # Cesta po úspěšném přihlášení
+            logout:
+                path: app_logout        # Cesta pro odhlášení
+                target: /login          # Cesta po odhlášení
+
+    # Access control rules určují, které části aplikace jsou dostupné pro různé role
+    access_control:
+        # Přístup k přihlašovací stránce povolen pro všechny
+        - { path: ^/app_login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Povolujeme přístup na seznam studentů pouze pro uživatele s rolí ROLE_USER
+        - { path: ^/app_student_index, roles: ROLE_USER }
+
+        # Další pravidla přidáváte podle potřeby
+        # Například přístup pro administrátory:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+
+        # Defaultní pravidlo: vše ostatní dostupné jen přihlášeným uživatelům
+       

@@ -1,0 +1,34 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}Seznam studentů{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_logout') }}">Odhlásit se</a>
+    <h1>Seznam studentů</h1>
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Jméno</th>
+                <th>Příjmení</th>
+                <th>Věk</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.jmeno }}</td>
+                <td>{{ student.prijmeni }}</td>
+                <td>{{ student.vek }}</td>
+                <td>
+                    <a href="{{ path('app_student_show', {'id': student.id}) }}" class="btn btn-info">Zobrazit</a>
+                    <a href="{{ path('app_student_edit', {'id': student.id}) }}" class="btn btn-warning">Upravit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

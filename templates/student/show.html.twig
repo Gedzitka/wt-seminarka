@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Student{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center">Student</h1>
+
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Id</th>
+                            <td>{{ student.id }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Jméno</th>
+                            <td>{{ student.jmeno }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Příjmení</th>
+                            <td>{{ student.prijmeni }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Věk</th>
+                            <td>{{ student.vek }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ path('app_student_index') }}" class="btn btn-primary mt-2">Zpět na seznam</a>
+                    <a href="{{ path('app_student_edit', {'id': student.id}) }}" class="btn btn-warning mt-2">Upravit</a>
+                    {{ include('student/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
